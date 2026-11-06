@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "import_ssh": false,
+  "tunnels": [
+    {
+      "name": "database-container",
+      "listen": "127.0.0.1:15432",
+      "backend": "127.0.0.1:25432",
+      "command": ["docker", "start", "development-postgres"]
+    },
+    {
+      "name": "database-over-ssh",
+      "listen": "127.0.0.1:15433",
+      "ssh": {
+        "alias": "development-bastion",
+        "target": "database.internal:5432"
+      }
+    }
+  ]
+}
